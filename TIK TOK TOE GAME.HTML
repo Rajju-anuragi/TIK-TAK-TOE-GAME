@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic tac toe</title>
+  
+<style>
+
+body{
+    color: rgb(226, 30, 30);
+    background-color: aquamarine;
+    margin-top: 70px;
+}
+.toc{
+    height: 500px;
+    width: 500px;
+  
+    margin-left: 75vh;;
+}
+h1{
+    text-align: center;
+}
+.box{
+    height: 125px;
+    width: 125px;
+    overflow: hidden;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 50px;
+    color: blue;}
+
+
+.game{
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+}
+.reset-btn{
+        margin-top: 50px;
+        margin-left: 30%;
+        cursor: pointer;
+    }
+
+   </style>
+</head>
+<body>
+    <main>
+<h1>Tic-Toc-Toe</h1>
+        
+        <div class="toc">
+          
+            <div class="game">
+                <button class="box" onclick="btn"></button>
+                <button class="box"  onclick="btn"></button>
+                <button class="box"  onclick="btn"></button>
+                <button class="box"  onclick="btn"></button>
+                 <button class="box" onclick="btn"></button>
+                 <button class="box" onclick="btn"></button>
+                  <button class="box" onclick="btn"></button>
+                <button class="box"  onclick="btn"></button>
+                 <button class="box"  onclick="btn"></button>
+                
+            </div>
+            <button class="reset-btn" onclick="resetGame()">reset game</button>
+            
+            </button>
+
+        </div>
+
+    </main>
+    <script>
+let boxes = document.querySelectorAll(".box");
+
+let turnO = false; // X start hoga
+
+const winPatterns = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+];
+
+// Button Click
+boxes.forEach((box) => {
+
+    box.addEventListener("click", () => {
+
+        if(turnO){
+            box.innerText = "O";
+            turnO = false;
+        }
+        else{
+            box.innerText = "X";
+            turnO = true;
+        }
+
+        box.disabled = true;
+
+        checkWinner();
+
+    });
+
+});
+
+
+// Winner Check Function
+const checkWinner = () => {
+
+    for(let pattern of winPatterns){
+
+        let pos1 = boxes[pattern[0]].innerText;
+        let pos2 = boxes[pattern[1]].innerText;
+        let pos3 = boxes[pattern[2]].innerText;
+
+        if(pos1 != "" && pos2 != "" && pos3 != ""){
+
+            if(pos1 === pos2 && pos2 === pos3){
+
+                alert("Winner is " + pos1);
+
+            }
+
+        }
+
+    }
+
+};
+function resetgame(){
+    checkWinner="";
+    
+}
+
+</script>
+</body>
+</html>
